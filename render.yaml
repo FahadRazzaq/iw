@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: health-data-api
+    runtime: python
+    region: frankfurt
+    plan: free
+    autoDeploy: true
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MONGO_URI
+        sync: false  # Set this in the Render Dashboard or via "render env set"
